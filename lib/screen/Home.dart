@@ -26,54 +26,61 @@ class _MyHomePageState extends State<MyHomePage> {
       new ModelCategorie(titre:"Résidences")
     ];
     return Scaffold(
-      appBar: AppBar(
-        leading:  IconButton(
-          icon:  Icon(
-            Icons.menu,
-            color: Colors.white,
-            size: 36.0,
-          ),
-        ),
-        title: Center(
-          child: Text(widget.title),
-        ),
-        actions: <Widget>[
-          IconButton(
+        resizeToAvoidBottomPadding: true,
+        appBar: AppBar(
+          leading:  IconButton(
             icon:  Icon(
-              Icons.search,
+              Icons.menu,
               color: Colors.white,
               size: 36.0,
             ),
-          )
-        ],
-      ),
-      body:
+          ),
+          title: Center(
+            child: Text(widget.title),
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon:  Icon(
+                Icons.search,
+                color: Colors.white,
+                size: 36.0,
+              ),
+            )
+          ],
+        ),
+        body:
         Column(
+
           children: <Widget>[
             Center(
-              child :RaisedButton(
-                onPressed: null,
-               //color: Colors.blue,
-                //splashColor: Colors.blue,
-                disabledColor: Colors.blue,
-                child: Text("Recherche Avancée",
-                  style: TextStyle(
-                      color: Colors.white,
-                        fontSize: 12.0,
+                child :RaisedButton(
+                    onPressed: null,
+                    //color: Colors.blue,
+                    //splashColor: Colors.blue,
+                    disabledColor: Colors.blue,
+                    child: Text("Recherche Avancée",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12.0,
+                        )
+                    )
                 )
-                )
-              )
             ),
             Container(
-                //padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-                height: MediaQuery.of(context).size.height * 0.80,
+                padding: EdgeInsets.fromLTRB(3, 5, 3, 0),
+                // padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height - 138,
                 child: ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: categorieModel.length,
                     itemBuilder: (context, index){
                       return Container(
-                       // height: MediaQuery.of(context).size.height * 0.4,
-                          child: Container(
+
+                        // height: MediaQuery.of(context).size.height * 0.4,
+                        child: Container(
                             child:  categorieModel[index]),
                       );
                     }
