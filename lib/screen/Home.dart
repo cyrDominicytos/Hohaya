@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hohaya/screen/MenuFile.dart';
 import 'package:hohaya/screen/ModelCategorie.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
     final String title;
+  static String tag = "MyHomePage";
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -27,13 +29,35 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
     return Scaffold(
         resizeToAvoidBottomPadding: true,
+        drawer: Drawer(
+            child: MenuFile()
+        ),
         appBar: AppBar(
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.search,
+                color: Colors.white,
+                size: 36.0,
+              ),
+            )
+          ],
+        ),
+
+
+        /*appBar: AppBar(
           leading:  IconButton(
             icon:  Icon(
               Icons.menu,
               color: Colors.white,
               size: 36.0,
             ),
+            onPressed:  (){
+             Drawer(
+               child: MenuFile(),
+             );
+
+            },
           ),
           title: Center(
             child: Text(widget.title),
@@ -47,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             )
           ],
-        ),
+        ),*/
         body:
         Column(
 

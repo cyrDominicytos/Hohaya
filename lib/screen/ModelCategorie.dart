@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hohaya/screen/ModelPublication.dart';
+import 'package:hohaya/screen/PublicationCategorie.dart';
 
 class ModelCategorie extends StatefulWidget {
   ModelCategorie({Key key, this.titre}) : super(key: key);
@@ -45,24 +46,23 @@ class _ModelCategorieState extends State<ModelCategorie> {
 
     if (deviceSize < 600) {
       if (portrait) {
-        print("portrait 1");
+
         _itemHeight = deviceHeight * 0.30;
         _itemWidth = deviceWidth * 0.6;
       } else {
-        print("paysage 1");
+
         _itemHeight = deviceHeight * 0.5;
         _itemWidth = deviceWidth * 0.3;
       }
     } else {
       if (portrait) {
-        print("portrait 2");
         _itemHeight = deviceHeight * 0.2;
         _itemWidth = deviceWidth * 0.4;
 
         _fontSize1 = 22.0;
         _iconSize = 28.0;
       } else {
-        print("paysage 2");
+
         _itemHeight = deviceHeight * 0.45;
         _itemWidth = deviceWidth * 0.4;
 
@@ -96,6 +96,10 @@ class _ModelCategorieState extends State<ModelCategorie> {
                         size: _iconSize,
 
                       ),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(
+                            PublicationCategorie.tagNull);
+                      },
                     )
                       ,
                 )
@@ -103,14 +107,18 @@ class _ModelCategorieState extends State<ModelCategorie> {
             ),
             Container(
                 padding: EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 10.0),
-
-                height: _itemHeight /*MediaQuery.of(context).size.height * 0.35 MediaQuery.of(context).orientation == DeviceOrientation.portraitUp ? (MediaQuery.of(context).size.height * 0.35) : (MediaQuery.of(context).size.height * 0.2)*/,
+                height: _itemHeight,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: categorie.length,
                   itemBuilder: (context, index) {
                 return Container(
-                  width: /*MediaQuery.of(context).size.width * 0.6*/ _itemWidth,
+                  /* ListTile(
+
+                  onTap: (){
+                    print("Liste : $index");
+                  },*/
+                  width: _itemWidth,
                   child: Card(
                     color: Colors.blue,
                     child: Container(

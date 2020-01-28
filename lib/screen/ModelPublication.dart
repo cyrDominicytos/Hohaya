@@ -48,7 +48,6 @@ class _ModelPublicationState extends State<ModelPublication> {
 
     if (deviceSize < 600) {
       if (portrait) {
-        print("portrait 1");
         _itemHeight = deviceHeight * 0.35;
         _itemWidth = deviceWidth * 0.6;
 
@@ -56,7 +55,6 @@ class _ModelPublicationState extends State<ModelPublication> {
         _fontSize3 = 10;
         _iconSize = 15;
       } else {
-        print("paysage 1");
         _itemHeight = deviceHeight * 0.5;
         _itemWidth = deviceWidth * 0.3;
 
@@ -66,7 +64,6 @@ class _ModelPublicationState extends State<ModelPublication> {
       }
     } else {
       if (portrait) {
-        print("portrait 2");
         _itemHeight = deviceHeight * 0.2;
         _itemWidth = deviceWidth * 0.4;
 
@@ -74,7 +71,6 @@ class _ModelPublicationState extends State<ModelPublication> {
         _fontSize3 = 12.0;
         _iconSize = 20;
       } else {
-        print("paysage 2");
         _itemHeight = deviceHeight * 0.45;
         _itemWidth = deviceWidth * 0.4;
 
@@ -105,6 +101,7 @@ class _ModelPublicationState extends State<ModelPublication> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: _fontSize2,
+                            backgroundColor: Colors.black.withOpacity(0.4)
                         ),
                         // textAlign: Alignment.topCenter,
                       ),
