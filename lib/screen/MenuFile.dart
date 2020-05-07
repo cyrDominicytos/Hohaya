@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hohaya/screen/HomeLast.dart';
 import 'package:hohaya/screen/PublicationCategorie.dart';
 
 class MenuFile extends StatefulWidget {
@@ -65,7 +66,7 @@ class _MenuFileState extends State<MenuFile> {
           ),
           ListTile(
               onTap: () {
-                Navigator.of(context).pushNamed(PublicationCategorie.tagNull);
+                Navigator.of(context).pushNamed(LastHomePage.tag, arguments: -1);
               },
               leading: InkWell(child: Icon(Icons.publish)),
               title: Text("Publications",
@@ -77,7 +78,7 @@ class _MenuFileState extends State<MenuFile> {
             padding: EdgeInsets.only(left: 25),
             child: ListTile(
                 onTap: () {
-                  Navigator.of(context).pushNamed(PublicationCategorie.tag0);
+                  Navigator.of(context).pushNamed(LastHomePage.tag, arguments: 0);
                 },
                 leading: Icon(Icons.airline_seat_individual_suite),
                 title: Text("Chambres",
@@ -90,7 +91,7 @@ class _MenuFileState extends State<MenuFile> {
             padding: EdgeInsets.only(left: 25),
             child: ListTile(
                 onTap: () {
-                  Navigator.of(context).pushNamed(PublicationCategorie.tag1);
+                  Navigator.of(context).pushNamed(LastHomePage.tag, arguments: 1);
                 },
                 leading: Icon(Icons.business),
                 title: Text("Appartements",
@@ -103,7 +104,7 @@ class _MenuFileState extends State<MenuFile> {
             padding: EdgeInsets.only(left: 25),
             child: ListTile(
                 onTap: () {
-                  Navigator.of(context).pushNamed(PublicationCategorie.tag2);
+                  Navigator.of(context).pushNamed(LastHomePage.tag, arguments: 2);
                 },
                 leading: Icon(Icons.home),
                 title: Text("Résidences",

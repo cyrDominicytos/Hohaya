@@ -183,7 +183,7 @@ class _ModelPublicationState extends State<ModelPublication> {
                                     textAlign: TextAlign.end,
                                   ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         )
@@ -200,6 +200,26 @@ class _ModelPublicationState extends State<ModelPublication> {
                                 child: Text("35000 CFA",
                                     style: TextStyle(
                                       color: Colors.black87,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      // backgroundColor:Colors.blue,
+                                    )
+                                )
+                            )
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Center(
+
+                            child: Padding(
+
+                                padding: EdgeInsets.only(top: 10),
+                                child: Text(widget.titre,
+                                    style: TextStyle(
+                                      color: Colors.blue,
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       // backgroundColor:Colors.blue,

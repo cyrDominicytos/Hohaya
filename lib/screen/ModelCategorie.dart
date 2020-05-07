@@ -113,11 +113,6 @@ class _ModelCategorieState extends State<ModelCategorie> {
                   itemCount: categorie.length,
                   itemBuilder: (context, index) {
                 return Container(
-                  /* ListTile(
-
-                  onTap: (){
-                    print("Liste : $index");
-                  },*/
                   width: _itemWidth,
                   child: Card(
                     color: Colors.blue,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hohaya/screen/ModelPublication.dart';
+import 'package:hohaya/screen/PresentSelectedGite.dart';
 
 class PublicationCategorie extends StatefulWidget {
   PublicationCategorie({Key key, this.type}) : super(key: key);
@@ -7,7 +8,7 @@ class PublicationCategorie extends StatefulWidget {
   static String tag1 = "PublicationCategorie Appartements";
   static String tag2 = "PublicationCategorie Résidences";
   static String tagNull = "PublicationCategorie Toutes";
-  String categorieName = "Locations Publiées";
+  String categorieName = "Locations Publiées", libellePub = "Location";
   final int type;
 
   @override
@@ -18,17 +19,26 @@ class _PublicationCategorieState extends State<PublicationCategorie> {
   @override
   Widget build(BuildContext context) {
     switch (widget.type) {
+      case -1:
+        widget.categorieName = "Locations Disponibles";
+        widget.libellePub = "Location";
+        break;
       case 0:
         widget.categorieName = "Chambres Disponibles";
+        widget.libellePub = "Chambres - Salon";
         break;
       case 1:
+
         widget.categorieName = "Appartements Disponibles";
+        widget.libellePub = "Appartements";
         break;
       case 2:
         widget.categorieName = "Résidences Disponibles";
+        widget.libellePub = "Résidences";
         break;
       default:
         widget.categorieName = "Locations Disponibles";
+        widget.libellePub = "Location";
         break;
     }
     List<ModelPublication> publicationModel = [
@@ -36,115 +46,115 @@ class _PublicationCategorieState extends State<PublicationCategorie> {
           idPub: 5,
           imageChemin: "assets/images/2.jpg",
           note: 2,
-          titre: "Chambre Salon",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Cadjehoun"),
       new ModelPublication(
           idPub: 5,
           imageChemin: "assets/images/2.jpg",
           note: 2,
-          titre: "Chambre Salon",
+          titre:widget.libellePub,
           villeQuartier: "Cotonou-Cadjehoun"),
       new ModelPublication(
           idPub: 5,
           imageChemin: "assets/images/2.jpg",
           note: 2,
-          titre: "Chambre Salon",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Cadjehoun"),
       new ModelPublication(
           idPub: 5,
           imageChemin: "assets/images/2.jpg",
           note: 2,
-          titre: "Chambre Salon",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Cadjehoun"),
       new ModelPublication(
           idPub: 2,
           imageChemin: "assets/images/3.jpg",
           note: 2,
-          titre: "Entrée Couché",
+          titre: widget.libellePub,
           villeQuartier: "Calavi-Tokan"),
       new ModelPublication(
           idPub: 3,
           imageChemin: "assets/images/4.jpg",
           note: 2,
-          titre: "Appartement",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Gbégamin"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka"),
       new ModelPublication(
           idPub: 4,
           imageChemin: "assets/images/5.jpg",
           note: 2,
-          titre: "Résidence",
+          titre: widget.libellePub,
           villeQuartier: "Cotonou-Apkapka")
     ];
     //Declaration Variables
     double _TitleSize;
     int _countItem;
-    double deviceSize = MediaQuery.of(context).size.shortestSide;
+    double deviceSize = MediaQuery.of(context).size.shortestSide, _screenH = MediaQuery.of(context).size.height;
     bool portrait =
         (MediaQuery.of(context).orientation == Orientation.portrait);
 
@@ -167,21 +177,7 @@ class _PublicationCategorieState extends State<PublicationCategorie> {
     }
     //fIN DECLARATON
 
-    return Scaffold(
-      appBar: AppBar(
-        /*leading: IconButton(
-          icon: Icon(Icons.arrow_back,color:Colors.white,size: 20,),
-          onPressed: null,
-        ),*/
-        title: Text(
-          "Hôhaya",
-          style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        centerTitle: true,
-        // backgroundColor: ,
-      ),
-      body: Column(
+    return  Column(
         children: <Widget>[
           Center(
             child: Text(
@@ -194,7 +190,7 @@ class _PublicationCategorieState extends State<PublicationCategorie> {
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height - 115 - 3,
+          height: _screenH-255,
             child: OrientationBuilder(builder: (context, orientation) {
               return GridView.count(
                   crossAxisCount: _countItem,
@@ -202,13 +198,27 @@ class _PublicationCategorieState extends State<PublicationCategorie> {
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                   scrollDirection: Axis.vertical,
-                  children: List.generate(publicationModel.length, (index) {
-                    return publicationModel[index];
-                  }));
+                  children:
+                  List.generate(publicationModel.length, (index) {
+                    return GestureDetector(
+                      child: Card(
+                          color: Colors.blue,
+                          child:publicationModel[index]),
+                      onTap: (){Navigator.of(context).pushNamed("/PresentSelectedGite", arguments: 1);} ,
+                    );
+                  }
+                  )
+              );
             }),
-          )
+          ),
+          /*GestureDetector(
+            child: Card(
+                color: Colors.blue,
+                child:publicationModel[index]),
+            onTap: ,
+          )*/
         ],
-      ),
-    );
+      );
+  //  );
   }
 }
