@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hohaya/screen/HomeLast.dart';
-import 'package:hohaya/screen/PublicationCategorie.dart';
 
 class MenuFile extends StatefulWidget {
   @override
@@ -16,9 +15,11 @@ class _MenuFileState extends State<MenuFile> {
     setState(() {
       if (_connexionBtn == "Connexion") {
         _loginBtnColor = Colors.grey;
+        Navigator.of(context).pushNamed("/Loginform");
         _connexionBtn = "Deconnexion";
       } else {
         _loginBtnColor = Colors.grey;
+        Navigator.of(context).pushNamed("/Sign");
         _connexionBtn = "Connexion";
       }
     });
@@ -37,13 +38,13 @@ class _MenuFileState extends State<MenuFile> {
                 backgroundImage: AssetImage("assets/images/avatar.png"),
               ),
             ),
-            accountName: Text("User Name",
+            accountName: Text("Nom Utilisateur",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
                 )),
             accountEmail: Text(
-              "usermail@gmail.com",
+              "example@gmail.com",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14,
@@ -118,7 +119,9 @@ class _MenuFileState extends State<MenuFile> {
             title: Text("Mes Réservations"),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed("/Sign");
+            },
             leading: Icon(Icons.account_box),
             title: Text("Mon Compte"),
           ),
