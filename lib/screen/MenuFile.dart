@@ -15,7 +15,7 @@ class _MenuFileState extends State<MenuFile> {
     setState(() {
       if (_connexionBtn == "Connexion") {
         _loginBtnColor = Colors.grey;
-        Navigator.of(context).pushNamed("/Loginform");
+        Navigator.of(context).pushNamed("/Loginform", arguments: 1);
         _connexionBtn = "Deconnexion";
       } else {
         _loginBtnColor = Colors.grey;
@@ -115,8 +115,60 @@ class _MenuFileState extends State<MenuFile> {
                     ))),
           ),
           ListTile(
+            onTap: () {
+              Navigator.of(context).pushNamed("/MesPublications");
+            },
             leading: Icon(Icons.account_balance_wallet),
             title: Text("Mes Réservations"),
+          ),
+
+          //Proprietaire seuls
+          ListTile(
+              leading: InkWell(child: Icon(Icons.publish)),
+              title: Text("Gérer logements",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ))),
+          Padding(
+            padding: EdgeInsets.only(left: 25),
+            child: ListTile(
+                onTap: () {
+                  Navigator.of(context).pushNamed("/CreerGites");
+                },
+                leading: Icon(Icons.airline_seat_individual_suite),
+                title: Text("Créer logement",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                    ))),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 25),
+            child: ListTile(
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                      LastHomePage.tag, arguments: 0);
+                },
+                leading: Icon(Icons.airline_seat_individual_suite),
+                title: Text("Liste",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                    ))),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 25),
+            child: ListTile(
+                onTap: () {
+                  Navigator.of(context).pushNamed("/MesPublications");
+                },
+                leading: Icon(Icons.business),
+                title: Text("Mes Publications",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                    ))),
           ),
           ListTile(
             onTap: () {

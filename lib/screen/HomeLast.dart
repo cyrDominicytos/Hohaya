@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hohaya/screen/Loginform.dart';
 import 'package:hohaya/screen/MenuFile.dart';
+import 'package:hohaya/screen/Profile.dart';
 import 'package:hohaya/screen/PublicationCategorie.dart';
 import 'package:hohaya/screen/QuickSearchPage.dart';
 
@@ -140,6 +141,12 @@ class _LastHomePageState extends State<LastHomePage> {
       resizeToAvoidBottomPadding: true,
       drawer: Drawer(child: MenuFile()),
       appBar: AppBar(
+        title: Text(
+          "Hôhaya",
+          style: TextStyle(
+              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -205,7 +212,7 @@ class _LastHomePageState extends State<LastHomePage> {
       case 1:
         return QuickSearchPage();
       case 2:
-        return Loginform();
+        return Profile();
       default:
         return homeContainer;
     }

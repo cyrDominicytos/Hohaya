@@ -248,12 +248,13 @@ class Sign extends StatelessWidget {
                       Spacer(),
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).pushNamed("/Loginform");
+                          Navigator.of(context).pushNamed(
+                              "/Loginform", arguments: 1);
                         },
                         child: RichText(
                             text: TextSpan(children: [
                           TextSpan(
-                              text: "J\'ai pas un compte ",
+                              text: "J\'ai un compte ",
                               style: TextStyle(
                                   color: Colors.grey, fontSize: 18.0)),
                           TextSpan(
