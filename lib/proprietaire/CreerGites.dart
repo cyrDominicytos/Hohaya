@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CreerGites extends StatefulWidget {
   @override
@@ -40,7 +39,17 @@ class _CreerGitesState extends State<CreerGites> {
           child: new ListView(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             children: <Widget>[
-              SizedBox(height: 100.0),
+              SizedBox(height: 20.0),
+              Center(
+                child: Text(
+                  "Détails du logement",
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(height: 20.0),
               Row(
                 children: <Widget>[
                   DropdownButton(
@@ -92,90 +101,58 @@ class _CreerGitesState extends State<CreerGites> {
                   ),
                 ],
               ),
+
               SizedBox(height: 20.0),
-              new TextFormField(
-                  decoration: const InputDecoration(
-                    icon: const Icon(
-                      FontAwesomeIcons.phone,
-                      color: Colors.blue,
-                    ),
-                    hintText: 'Enter your Phone Details',
-                    labelText: 'Phone',
+              Row(
+                children: <Widget>[
+                  new Flexible(
+                    child: new TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: 'Nombre',
+                          labelText: 'Nombre de Chambre',
+                        ),
+                        keyboardType: TextInputType.number),
+
                   ),
-                  keyboardType: TextInputType.number),
-              new TextFormField(
-                decoration: const InputDecoration(
-                  icon: const Icon(
-                    FontAwesomeIcons.userCircle,
-                    color: Colors.blue,
-                  ),
-                  hintText: 'Enter your Name',
-                  labelText: 'Name',
-                ),
+                  new Flexible(
+                    child: new TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: 'Nombre',
+                          labelText: 'Nombre de Cuisine',
+                        ),
+                        keyboardType: TextInputType.number),
+                  )
+
+                ],
               ),
-              new TextFormField(
-                decoration: const InputDecoration(
-                  icon: const Icon(
-                    FontAwesomeIcons.envelope,
-                    color: Colors.blue,
+              Row(
+                children: <Widget>[
+                  new Flexible(
+                    child: new TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: 'Nombre',
+                          labelText: 'Nombre de salle de bain',
+                        ),
+                        keyboardType: TextInputType.number),
                   ),
-                  hintText: 'Enter your Email Address',
-                  labelText: 'Email',
-                ),
-                keyboardType: TextInputType.emailAddress,
+                  new Flexible(
+                    child: new TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: 'Prix',
+                          labelText: 'prix',
+                        ),
+                        keyboardType: TextInputType.number),
+                  )
+
+                ],
               ),
+
+
+
+
               SizedBox(height: 20.0),
               SizedBox(height: 40.0),
-              /*StreamBuilder<QuerySnapshot>(
-                  stream: Firestore.instance.collection("currency").snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData)
-                      const Text("Loading.....");
-                    else {
-                      List<DropdownMenuItem> currencyItems = [];
-                      for (int i = 0; i < snapshot.data.documents.length; i++) {
-                        DocumentSnapshot snap = snapshot.data.documents[i];
-                        currencyItems.add(
-                          DropdownMenuItem(
-                            child: Text(
-                              snap.documentID,
-                              style: TextStyle(color: Color(0xff11b719)),
-                            ),
-                            value: "${snap.documentID}",
-                          ),
-                        );
-                      }
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(FontAwesomeIcons.coins,
-                              size: 25.0, color: Color(0xff11b719)),
-                          SizedBox(width: 50.0),
-                          DropdownButton(
-                            items: currencyItems,
-                            onChanged: (currencyValue) {
-                              final snackBar = SnackBar(
-                                content: Text(
-                                  'Selected Currency value is $currencyValue',
-                                  style: TextStyle(color: Color(0xff11b719)),
-                                ),
-                              );
-                              Scaffold.of(context).showSnackBar(snackBar);
-                              setState(() {
-                                selectedCurrency = currencyValue;
-                              });
-                            },
-                            value: selectedCurrency,
-                            isExpanded: false,
-                            hint: new Text(
-                              "Choose Currency Type",
-                              style: TextStyle(color: Color(0xff11b719)),
-                            ),
-                          ),
-                        ],
-                      );
-                    }
-                  }),*/
+
               SizedBox(
                 height: 150.0,
               ),

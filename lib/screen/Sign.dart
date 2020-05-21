@@ -169,9 +169,37 @@ class Sign extends StatelessWidget {
                             ),
                             hintText: 'Email ou Téléphone',
                           ),
+                            keyboardType: TextInputType.emailAddress
                         ),
                       ), //Email ou téléphone
+                      Container(
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width / 1.2,
+                        height: 45,
+                        margin: EdgeInsets.only(top: 32),
+                        padding: EdgeInsets.only(
+                            top: 4, left: 16, right: 16, bottom: 4),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(color: Colors.black12, blurRadius: 5)
+                            ]),
+                        child: TextField(
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              icon: Icon(
+                                Icons.phone,
+                                color: Colors.grey,
+                              ),
+                              hintText: 'Téléphone',
 
+                            ),
+                            keyboardType: TextInputType.number
+                        ),
+                      ),
                       Container(
                         width: MediaQuery.of(context).size.width / 1.2,
                         height: 45,
