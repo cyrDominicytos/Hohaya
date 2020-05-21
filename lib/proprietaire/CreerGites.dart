@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreerGites extends StatefulWidget {
@@ -11,6 +12,17 @@ class _CreerGitesState extends State<CreerGites> {
   final GlobalKey<FormState> _formKeyValue = new GlobalKey<FormState>();
   List<String> _logementType = <String>['Chambres', 'Appartement', 'Résidence'];
   List<String> _logementCategorie = <String>['Ordinaire', 'Sanitaire'];
+
+  //Radio button manager
+  int _radioValue = 0;
+
+  void _handleRadioValueChange(int value) {
+    setState(() {
+      _radioValue = value;
+    });
+
+    print(value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,56 +62,35 @@ class _CreerGitesState extends State<CreerGites> {
                 ),
               ),
               SizedBox(height: 20.0),
-              Row(
-                children: <Widget>[
-                  DropdownButton(
-                    items: _logementType
-                        .map((value) => DropdownMenuItem(
-                              child: Text(
-                                value,
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                              value: value,
-                            ))
-                        .toList(),
-                    onChanged: (selectedAccountType1) {
-                      print('$selectedAccountType1');
-                      setState(() {
-                        selectedType = selectedAccountType1;
-                      });
-                    },
-                    value: selectedType,
-                    isExpanded: false,
-                    hint: Text(
-                      'Choisissez le Type de logement',
-                      style: TextStyle(color: Colors.blue),
-                    ),
+
+              Padding(
+                padding: EdgeInsets.only(left: 200, right: 200),
+                child: DropdownButton(
+                  items: _logementCategorie
+                      .map((value) =>
+                      DropdownMenuItem(
+                        child: Center(
+                          child: Text(
+                            value,
+                            style: TextStyle(color: Colors.blue),
+                          ),
+                        ),
+                        value: value,
+                      ))
+                      .toList(),
+                  onChanged: (selectedAccountType) {
+                    print('$selectedAccountType');
+                    setState(() {
+                      selectedCategorireType = selectedAccountType;
+                    });
+                  },
+                  value: selectedType,
+                  isExpanded: false,
+                  hint: Text(
+                    'Choisissez la catégorie de logement',
+                    style: TextStyle(color: Colors.blue),
                   ),
-                  SizedBox(width: 20.0),
-                  DropdownButton(
-                    items: _logementCategorie
-                        .map((value) => DropdownMenuItem(
-                              child: Text(
-                                value,
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                              value: value,
-                            ))
-                        .toList(),
-                    onChanged: (selectedAccountType) {
-                      print('$selectedAccountType');
-                      setState(() {
-                        selectedCategorireType = selectedAccountType;
-                      });
-                    },
-                    value: selectedType,
-                    isExpanded: false,
-                    hint: Text(
-                      'Choisissez la catégorie de logement',
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                  ),
-                ],
+                ),
               ),
 
               SizedBox(height: 20.0),
@@ -146,8 +137,62 @@ class _CreerGitesState extends State<CreerGites> {
 
                 ],
               ),
+              SizedBox(height: 10.0),
+              Center(
+                child: Text(
+                  "Confort du logement",
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  new Radio(
+                    value: 0,
+                    groupValue: _radioValue,
+                    onChanged: _handleRadioValueChange,
+                  ),
+                  new Text('Ordinaire'),
+                  SizedBox(width: 100.0),
 
+                  new Radio(
+                    value: 1,
+                    groupValue: _radioValue,
+                    onChanged: _handleRadioValueChange,
+                  ),
+                  new Text('Sanitaire'),
+                ],
+              ),
+              SizedBox(height: 10.0),
+              Center(
+                child: Text(
+                  "Logement disponible pour",
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  new Radio(
+                    value: 0,
+                    groupValue: _radioValue,
+                    onChanged: _handleRadioValueChange,
+                  ),
+                  new Text('Ordinaire'),
+                  SizedBox(width: 100.0),
 
+                  new Radio(
+                    value: 1,
+                    groupValue: _radioValue,
+                    onChanged: _handleRadioValueChange,
+                  ),
+                  new Text('Sanitaire'),
+                ],
+              ),
 
 
               SizedBox(height: 20.0),
@@ -167,7 +212,15 @@ class _CreerGitesState extends State<CreerGites> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              Text("Suivant", style: TextStyle(fontSize: 24.0)),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                      "/CreerGitesPage2");
+                                },
+                                child: Text("Suivants", style: TextStyle(
+                                    fontSize: 24.0)),
+                              )
+
                             ],
                           )),
                       onPressed: () {},
