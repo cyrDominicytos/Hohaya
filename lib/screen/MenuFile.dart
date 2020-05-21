@@ -177,6 +177,9 @@ class _MenuFileState extends State<MenuFile> {
             title: Text("Mon Compte"),
           ),
           ListTile(
+            onTap: () {
+              Navigator.of(context).pushNamed("/ContenuAccueil");
+            },
             leading: Icon(Icons.settings),
             title: Text("Paramètres"),
           )

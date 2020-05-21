@@ -11,8 +11,16 @@ class CreerGitesPage2 extends StatefulWidget {
 class _CreerGitesPage2State extends State<CreerGitesPage2> {
   File _image;
 
-  Future getImage() async {
+  Future getImageCam() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      _image = image as File;
+    });
+  }
+
+  Future getImageGal() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       _image = image as File;
@@ -80,13 +88,13 @@ class _CreerGitesPage2State extends State<CreerGitesPage2> {
                   RaisedButton(
                     child: Text("Caméra"),
                     color: Colors.blueAccent,
-                    onPressed: getImage,
+                    onPressed: getImageCam,
                   ),
                   SizedBox(width: 50),
                   RaisedButton(
                     child: Text("Galerie"),
                     color: Colors.indigo,
-                    onPressed: getImage,
+                    onPressed: getImageGal,
                   )
                 ],
               )

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hohaya/proprietaire/CreerGites.dart';
 import 'package:hohaya/proprietaire/CreerGitesPage2.dart';
 import 'package:hohaya/proprietaire/MesPublications.dart';
+import 'package:hohaya/screen/ContenuAccueil.dart';
 import 'package:hohaya/screen/HomeLast.dart';
 import 'package:hohaya/screen/Loginform.dart';
 import 'package:hohaya/screen/PresentSelectedGite.dart';
@@ -74,6 +75,15 @@ class RouteGenerator{
           );
         return MaterialPageRoute(
             builder: (_) => QuickSearchPage()
+        );
+
+      case "/ContenuAccueil" :
+        if (args is int)
+          return MaterialPageRoute(
+            builder: (_) => ContenuAccueil(),
+          );
+        return MaterialPageRoute(
+            builder: (_) => ContenuAccueil()
         );
 
       case "/CreerGitesPage2" :
