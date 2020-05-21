@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -28,16 +29,27 @@ class _CreerGitesPage2State extends State<CreerGitesPage2> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Image Picker Example'),
+        title: Text('Hohaya'),
       ),
       body: Column(
         children: <Widget>[
           Column(
             children: <Widget>[
+              SizedBox(height: 20.0),
+              Center(
+                child: Text(
+                  "Ajouter les images",
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
               //Images defilantes
               Padding(
                 child: Stack(
                   children: <Widget>[
+
                     Card(
                       elevation: 2,
                       child: Container(
@@ -48,12 +60,10 @@ class _CreerGitesPage2State extends State<CreerGitesPage2> {
                             EdgeInsets.symmetric(horizontal: 30, vertical: 30),
                         alignment: Alignment.topCenter,
                         decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                            ),
+
                             borderRadius: BorderRadius.circular(15)),
                         child: _image == null
-                            ? Text('No image selected.')
+                            ? Text('Aucune image selectionné.')
                             : Image.file(_image),
                       ),
                       borderOnForeground: true,

@@ -14,15 +14,10 @@ class _CreerGitesState extends State<CreerGites> {
   List<String> _logementCategorie = <String>['Ordinaire', 'Sanitaire'];
 
   //Radio button manager
-  int _radioValue = 0;
+  int _radioValue,
+      _radioValue2 = 0;
 
-  void _handleRadioValueChange(int value) {
-    setState(() {
-      _radioValue = value;
-    });
 
-    print(value);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +108,7 @@ class _CreerGitesState extends State<CreerGites> {
                         ),
                         keyboardType: TextInputType.number),
                   )
-
+                  ,
                 ],
               ),
               Row(
@@ -179,18 +174,18 @@ class _CreerGitesState extends State<CreerGites> {
                 children: <Widget>[
                   new Radio(
                     value: 0,
-                    groupValue: _radioValue,
-                    onChanged: _handleRadioValueChange,
+                    groupValue: _radioValue2,
+                    onChanged: _handleRadioValueChange2,
                   ),
-                  new Text('Ordinaire'),
+                  new Text('Location'),
                   SizedBox(width: 100.0),
 
                   new Radio(
                     value: 1,
-                    groupValue: _radioValue,
-                    onChanged: _handleRadioValueChange,
+                    groupValue: _radioValue2,
+                    onChanged: _handleRadioValueChange2,
                   ),
-                  new Text('Sanitaire'),
+                  new Text('Réservation'),
                 ],
               ),
 
@@ -231,5 +226,19 @@ class _CreerGitesState extends State<CreerGites> {
             ],
           ),
         ));
+  }
+
+  void _handleRadioValueChange2(int value) {
+    setState(() {
+      _radioValue2 = value;
+    });
+  }
+
+  void _handleRadioValueChange(int value) {
+    setState(() {
+      _radioValue = value;
+    });
+
+    print(value);
   }
 }
