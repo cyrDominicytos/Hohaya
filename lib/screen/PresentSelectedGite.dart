@@ -1,7 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hohaya/screen/MenuFile.dart';
-import 'package:hohaya/screen/BottonNavigation.dart';
 
 class PresentSelectedGite extends StatefulWidget {
   PresentSelectedGite({Key key, this.mode}) : super(key: key);
@@ -23,19 +22,24 @@ class _PresentSelectedGiteState extends State<PresentSelectedGite> {
     "assets/images/5.jpg",
   ];
 
-  void _previousImage()
-  {
+
+  List<T> map<T>(List list, Function handler) {
+    List<T> result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+    return result;
+  }
+
+  void _previousImage() {
     setState(() {
       _locationIndex = _locationIndex > 0 ? _locationIndex - 1 : 0;
-
     });
   }
 
-  void _nextImage()
-  {
+  void _nextImage() {
     setState(() {
       _locationIndex = _locationIndex < _locationImages.length - 1  ? _locationIndex + 1  :_locationIndex;
-
     });
   }
 
@@ -48,12 +52,11 @@ class _PresentSelectedGiteState extends State<PresentSelectedGite> {
         iconList.add( Icon(Icons.star, color: Colors.yellow,));
       for(int i = note; i < 5 ; i++)
         iconList.add( Icon(Icons.star_border,));
-
     });
   }
+
   @override
   Widget build(BuildContext context) {
-
     double screenHeight = MediaQuery.of(context).size.height, screenWidth=MediaQuery.of(context).size.width, imageHeight =screenHeight/1.8,  dotTop = screenHeight/2, iconTop = screenHeight/4;
     return
       (widget.mode < 0) ?
@@ -252,27 +255,27 @@ class _PresentSelectedGiteState extends State<PresentSelectedGite> {
         ),
 
       )) : (Scaffold(
-      //When call from default page
-      appBar: AppBar(
-        title: Text(
-          "Hôhaya",
-          style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+        //When call from default page
+        appBar: AppBar(
+          title: Text(
+            "Hôhaya",
+            style: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          centerTitle: true,
+          // backgroundColor: ,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.search,
+                color: Colors.white,
+                size: 36.0,
+              ),
+
+            )
+          ],
+
         ),
-        centerTitle: true,
-        // backgroundColor: ,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Colors.white,
-              size: 36.0,
-            ),
-
-          )
-        ],
-
-      ),
         body:ListView(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
@@ -281,82 +284,85 @@ class _PresentSelectedGiteState extends State<PresentSelectedGite> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    //Images defilantes
-                    Padding(
-
-                      child: Stack(
-                        children: <Widget>[
-
-                          Card(
-                            elevation: 2,
-                            child:   Container(
-                              width:screenWidth,
-                              height: imageHeight,
-                              //margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                              alignment: Alignment.topCenter,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(_locationImages[_locationIndex]),
-                                    fit: BoxFit.cover,
-
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
-                              )
-                              ,
-                            ),
-                            borderOnForeground: true,
-                            color: Colors.white,
-                          ) ,
-
-                          Positioned(
-
-                            child: SelectedPhoto(index: _locationIndex,numberOfDots: _locationImages.length,),
-                            top: dotTop,
-                            left: 25.0,
-                            right: 25.0,
-                          )
-                          ,
-                          Positioned(
-                            child: IconButton(
-                              //disabledColor: Colors.grey.withOpacity(3.0),
-                              icon: Icon(Icons.arrow_back_ios, size: 40,color: Colors.blueAccent,),
-                              onPressed: _previousImage,
-                            ),
-                            top: iconTop,
-                            left: 0.0,
-                          ),
-                          Positioned(
-                            child: IconButton(
-                              //disabledColor: Colors.grey.withOpacity(3.0),
-                              icon: Icon(Icons.arrow_forward_ios, size: 40,color: Colors.blueAccent,),
-                              onPressed: _nextImage,
-                            ),
-                            top: iconTop,
-                            right: 0.0,
-                          ),
-                        ],
-                      ),
-                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                    )
-                    ,
-                    //Precedent suivant
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        RaisedButton(
-                          child: Text("Précédent"),
-                          color: Colors.blueAccent,
-                          onPressed: _previousImage,
+                        CarouselSlider(
+                          options: CarouselOptions(
+                            height: imageHeight,
+                            aspectRatio: 16 / 9,
+                            viewportFraction: 0.8,
+                            initialPage: 0,
+                            enlargeCenterPage: true,
+                            reverse: false,
+                            autoPlayInterval: Duration(seconds: 4),
+                            autoPlayAnimationDuration: Duration(
+                                milliseconds: 2000),
+                            autoPlay: true,
+                            onPageChanged: (index, reason) {
+                              setState(() {
+                                _locationIndex = index;
+                                reason = CarouselPageChangedReason.timed;
+                              });
+                            },
+                            autoPlayCurve: Curves.fastOutSlowIn,
+                          ),
+                          items: _locationImages.map((imgUrl) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 20.0,
+                                      left: 8.0,
+                                      right: 8.0,
+                                      bottom: 8.0),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(0.0),
+                                    height: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .height - 550,
+                                    width: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width,
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey[300],
+                                        borderRadius: BorderRadius.circular(
+                                            10.0)),
+                                    child: Image.asset(
+                                      imgUrl,
+                                      fit: BoxFit.contain,
+                                      filterQuality: FilterQuality.high,
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          }).toList(),
                         ),
-                        SizedBox(width: 50),
-                        RaisedButton(
-                          child: Text("Suivant"),
-                          color: Colors.indigo,
-                          onPressed: _nextImage,
-                        )
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: map(_locationImages, (index, url) {
+                            return Container(
+                              width: _locationIndex == index ? 9.0 : 7.0,
+                              height: _locationIndex == index ? 9.0 : 7.0,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 2.0, vertical: 10.0),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color:
+                                _locationIndex == index
+                                    ? Colors.black38
+                                    : Colors.grey[350],
+                              ),
+                            );
+                          }),
+                        ),
                       ],
-                    )
+                    ),
+                    //Precedent suivant
+
                   ],
                 ),
                 SizedBox(height: 20,),
@@ -466,15 +472,15 @@ class _PresentSelectedGiteState extends State<PresentSelectedGite> {
         ),
 
       ));
-
   }
 }
 
 class SelectedPhoto extends StatelessWidget {
   final int index, numberOfDots;
+
   SelectedPhoto({this.index, this.numberOfDots});
-  Widget _inactivePhoto()
-  {
+
+  Widget _inactivePhoto() {
     return Container(
       child: Padding(
         padding: EdgeInsets.only(left: 3.0, right: 3.0),
@@ -482,16 +488,15 @@ class SelectedPhoto extends StatelessWidget {
           height: 8.0,
           width: 8.0,
           decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(4.0)
+              color: Colors.grey,
+              borderRadius: BorderRadius.circular(4.0)
           ),
         ),
       ),
     );
   }
 
-  Widget _activePhoto()
-  {
+  Widget _activePhoto() {
     return Container(
       child: Padding(
         padding: EdgeInsets.only(left: 5.0, right:5.0),
@@ -501,12 +506,12 @@ class SelectedPhoto extends StatelessWidget {
           decoration: BoxDecoration(
               color: Colors.blue,
               borderRadius: BorderRadius.circular(5.0),
-            boxShadow: [
-              BoxShadow(
-              color:  Colors.indigo,
-              spreadRadius: 0.0,
-              blurRadius: 2.0,
-            )]
+              boxShadow: [
+                BoxShadow(
+                  color:  Colors.indigo,
+                  spreadRadius: 0.0,
+                  blurRadius: 2.0,
+                )]
           ),
 
         ),
@@ -514,13 +519,13 @@ class SelectedPhoto extends StatelessWidget {
     );
   }
 
-  List<Widget> buildDots()
-  {
+  List<Widget> buildDots() {
     List<Widget> dots = [];
     for(int i = 0; i< numberOfDots; i++)
-        dots.add(i == index ? _activePhoto() : _inactivePhoto());
-      return dots;
+      dots.add(i == index ? _activePhoto() : _inactivePhoto());
+    return dots;
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(

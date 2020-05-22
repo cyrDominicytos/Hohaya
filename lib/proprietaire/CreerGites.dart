@@ -7,11 +7,25 @@ class CreerGites extends StatefulWidget {
 }
 
 class _CreerGitesState extends State<CreerGites> {
-  var selectedCurrency, selectedType;
-  var selectedCategorieCurrency, selectedCategorireType;
-  final GlobalKey<FormState> _formKeyValue = new GlobalKey<FormState>();
+  var selectedCurrency, selectedType, selectedVille, selectedQuartier,
+      selectedZone;
+  var _selectedType, _selectedVille, _selectedQuartier, _selectedZone;
+  final GlobalKey<FormState> _formKeyType = new GlobalKey<FormState>();
+
   List<String> _logementType = <String>['Chambres', 'Appartement', 'Résidence'];
-  List<String> _logementCategorie = <String>['Ordinaire', 'Sanitaire'];
+  List<String> _listVille = <String>['Cotonou'];
+  List<String> _listQuartier = <String>[
+    'Cadjèhoun',
+    'Gbégamey',
+    'Vodjè',
+    'Agla',
+    'Akpakpa'
+  ];
+  List<String> _listZone = <String>[
+    'Cadjèhoun 1 ',
+    'Cadjèhoun 2',
+    'Vodjè Sona'
+  ];
 
   //Radio button manager
   int _radioValue,
@@ -41,7 +55,7 @@ class _CreerGitesState extends State<CreerGites> {
           ],
         ),
         body: Form(
-          key: _formKeyValue,
+          key: _formKeyType,
           autovalidate: true,
           child: new ListView(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -61,7 +75,7 @@ class _CreerGitesState extends State<CreerGites> {
               Padding(
                 padding: EdgeInsets.only(left: 200, right: 200),
                 child: DropdownButton(
-                  items: _logementCategorie
+                  items: _logementType
                       .map((value) =>
                       DropdownMenuItem(
                         child: Center(
@@ -73,16 +87,16 @@ class _CreerGitesState extends State<CreerGites> {
                         value: value,
                       ))
                       .toList(),
-                  onChanged: (selectedAccountType) {
-                    print('$selectedAccountType');
+                  onChanged: (selectedType) {
+                    print('$selectedType');
                     setState(() {
-                      selectedCategorireType = selectedAccountType;
+                      _selectedType = selectedType;
                     });
                   },
                   value: selectedType,
                   isExpanded: false,
                   hint: Text(
-                    'Choisissez la catégorie de logement',
+                    'Type de logement',
                     style: TextStyle(color: Colors.blue),
                   ),
                 ),
@@ -90,6 +104,7 @@ class _CreerGitesState extends State<CreerGites> {
 
               SizedBox(height: 20.0),
               Row(
+
                 children: <Widget>[
                   new Flexible(
                     child: new TextFormField(
@@ -100,6 +115,7 @@ class _CreerGitesState extends State<CreerGites> {
                         keyboardType: TextInputType.number),
 
                   ),
+                  SizedBox(width: 20.0),
                   new Flexible(
                     child: new TextFormField(
                         decoration: const InputDecoration(
@@ -121,6 +137,7 @@ class _CreerGitesState extends State<CreerGites> {
                         ),
                         keyboardType: TextInputType.number),
                   ),
+                  SizedBox(width: 20.0),
                   new Flexible(
                     child: new TextFormField(
                         decoration: const InputDecoration(
@@ -188,8 +205,116 @@ class _CreerGitesState extends State<CreerGites> {
                   new Text('Réservation'),
                 ],
               ),
+              SizedBox(height: 30.0),
+              Center(
+                child: Text(
+                  "Localisation du logement",
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(height: 10.0),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 15),
+                      child: DropdownButton(
+                        items: _listVille
+                            .map((value) =>
+                            DropdownMenuItem(
+                              child: Center(
+                                child: Text(
+                                  value,
+                                  style: TextStyle(color: Colors.blue),
+                                ),
+                              ),
+                              value: value,
+                            ))
+                            .toList(),
+                        onChanged: (selectedAccountType) {
+                          print('$selectedAccountType');
+                          setState(() {
+                            _selectedVille = selectedAccountType;
+                          });
+                        },
+                        value: selectedType,
+                        isExpanded: true,
+                        hint: Text(
+                          'Ville',
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 15),
+                      child: DropdownButton(
+                        items: _listQuartier
+                            .map((value) =>
+                            DropdownMenuItem(
+                              child: Center(
+                                child: Text(
+                                  value,
+                                  style: TextStyle(color: Colors.blue),
+                                ),
+                              ),
+                              value: value,
+                            ))
+                            .toList(),
+                        onChanged: (selectedAccountType) {
+                          print('$selectedAccountType');
+                          setState(() {
+                            _selectedQuartier = selectedAccountType;
+                          });
+                        },
+                        value: selectedType,
+                        isExpanded: true,
+                        hint: Text(
+                          'Quartier',
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 15),
+                      child: DropdownButton(
+                        items: _listZone
+                            .map((value) =>
+                            DropdownMenuItem(
+                              child: Center(
+                                child: Text(
+                                  value,
+                                  style: TextStyle(color: Colors.blue),
+                                ),
+                              ),
+                              value: value,
+                            ))
+                            .toList(),
+                        onChanged: (selectedAccountType) {
+                          print('$selectedAccountType');
+                          setState(() {
+                            _selectedZone = selectedAccountType;
+                          });
+                        },
+                        value: selectedType,
+                        isExpanded: true,
+                        hint: Text(
+                          'Zone',
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  )
 
 
+                ],
+              ),
               SizedBox(height: 20.0),
               SizedBox(height: 40.0),
 
