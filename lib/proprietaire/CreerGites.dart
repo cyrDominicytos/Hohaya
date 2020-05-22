@@ -35,6 +35,14 @@ class _CreerGitesState extends State<CreerGites> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery
+        .of(context)
+        .size
+        .height,
+        screenWidth = MediaQuery
+            .of(context)
+            .size
+            .width;
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -321,32 +329,37 @@ class _CreerGitesState extends State<CreerGites> {
               SizedBox(
                 height: 150.0,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  RaisedButton(
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).pushNamed(
-                                      "/CreerGitesPage2");
-                                },
-                                child: Text("Suivants", style: TextStyle(
-                                    fontSize: 24.0)),
-                              )
+              Container(
+                width: screenWidth - (screenWidth / 3),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
 
-                            ],
-                          )),
-                      onPressed: () {},
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0))),
-                ],
+                    RaisedButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                              "/CreerGitesPage2");
+                        },
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                              children: <Widget>[
+
+                                Text("Terminer Création", style: TextStyle(
+                                    fontSize: 24.0)),
+
+
+                              ],
+                            )),
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0))),
+
+                  ],
+                ),
               ),
             ],
           ),

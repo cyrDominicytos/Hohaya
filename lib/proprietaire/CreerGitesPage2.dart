@@ -10,26 +10,60 @@ class CreerGitesPage2 extends StatefulWidget {
 }
 
 class _CreerGitesPage2State extends State<CreerGitesPage2> {
-  File _image;
 
+
+  File _image;
+  int _limite = 5;
+
+
+  void _showDialog(String mess) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Ajouter Image"),
+          content: new Text(mess),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Fermer"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
   Future getImageCam() async {
-    if (_locationImages.length < 10) {
+    if (_locationImages.length < _limite) {
       var image = await ImagePicker.pickImage(source: ImageSource.camera);
       setState(() {
         _image = image as File;
         _locationImages.add(_image);
       });
+    } else {
+      _showDialog(
+          "Vous avez atteint le nombre limite d'image\n" + _limite.toString() +
+              " images sont auutorisées.");
     }
   }
 
   Future getImageGal() async {
-    if (_locationImages.length < 10) {
+    if (_locationImages.length < _limite) {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       _image = image as File;
       _locationImages.add(_image);
     });
+    } else {
+      _showDialog(
+          "Vous avez atteint le nombre limite d'image\n" + _limite.toString() +
+              " images sont auutorisées.");
     }
   }
 
@@ -87,7 +121,7 @@ class _CreerGitesPage2State extends State<CreerGitesPage2> {
               ),
               //Images defilantes
 
-              //Precedent suivant
+              //Camera Galerie
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -110,6 +144,7 @@ class _CreerGitesPage2State extends State<CreerGitesPage2> {
           SizedBox(
             height: 20,
           ),
+          //Carossel
           Column(
             children: <Widget>[
               Column(
@@ -187,6 +222,39 @@ class _CreerGitesPage2State extends State<CreerGitesPage2> {
 
             ],
           ),
+          Container(
+            width: screenWidth - (screenWidth / 3),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+
+                RaisedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                          "/CreerGitesPage2");
+                    },
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    child: Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                          children: <Widget>[
+
+                            Text("Terminer Création", style: TextStyle(
+                                fontSize: 24.0)),
+
+
+                          ],
+                        )),
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0))),
+
+              ],
+            ),
+          ),
+
         ],
       ),
     );
